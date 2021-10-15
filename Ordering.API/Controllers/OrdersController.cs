@@ -1,0 +1,27 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Ordering.Services.DTOs;
+using Ordering.Services.Services.Implementations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Ordering.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OrdersController : ControllerBase
+    {
+        private readonly OrderingService _orderingService;
+        public OrdersController(OrderingService orderingService)
+        {
+            _orderingService = orderingService;
+        }
+        [HttpPost("CheckOutOrder")]
+        public async Task<CheckoutOrderResponseDTO> CheckOutOrderAsync(OrderDTO order)
+        {
+            return await _orderingService.CrateOrderAsync(order);
+        }
+    }
+}

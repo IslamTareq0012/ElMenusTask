@@ -6,9 +6,11 @@
 
   <ItemGroup>
     <Folder Include="Validators\" />
-    <Folder Include="Services.Implementations\" />
     <Folder Include="Services.Wrappers\" />
-    <Folder Include="Services.Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Orders\Ordering.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using Ordering.Domain.Order.Aggregate;
+﻿using Microsoft.EntityFrameworkCore;
+using Ordering.Domain.Order.Aggregate;
 using Ordering.Domain.Repositories.Interface;
 using Ordering.Infrastructure.Context;
 using System;
@@ -16,6 +17,12 @@ namespace Ordering.Infrastructure.RepositoryImplementaion
         {
             _context = context;
         }
+
+        public async Task<List<OrderItem>> GetOrderItemsAsync(List<int> IDs)
+        {
+            return await _context.OrderItems.Where(x => IDs.Contains(x.ID)).ToListAsync();
+        }
+
         public async Task<int> SaveChecedkOutOrderAsync(Order order)
         {
             _context.Order.Add(new Order()
@@ -26,8 +33,19 @@ namespace Ordering.Infrastructure.RepositoryImplementaion
                 OrderTotalValue = order.OrderTotalValue,
                 OrderItemToOrders = order.OrderItemToOrders
             });
+            _ = await _context.SaveChangesAsync();
+            return order.ID;
+        }
 
-          return await _context.SaveChangesAsync();
+        public async Task SaveItemsToOrdersAsync(int OrderId, List<int> itemsIDs)
+        {
+            _context.OrderItemToOrders.AddRange(itemsIDs.Select(ItemId => new OrderItemToOrder()
+            {
+                OrderID = OrderId,
+                OrderItemID = ItemId
+            }).ToList());
+
+            _ = await _context.SaveChangesAsync();
         }
     }
 }
