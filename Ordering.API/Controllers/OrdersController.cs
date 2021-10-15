@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Services.DTOs;
 using Ordering.Services.Services.Implementations;
+using Ordering.Services.Services.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Ordering.API.Controllers
             _orderingService = orderingService;
         }
         [HttpPost("CheckOutOrder")]
-        public async Task<CheckoutOrderResponseDTO> CheckOutOrderAsync(OrderDTO order)
+        public async Task<Response<CheckoutOrderResponseDTO>> CheckOutOrderAsync(OrderDTO order)
         {
             return await _orderingService.CrateOrderAsync(order);
         }

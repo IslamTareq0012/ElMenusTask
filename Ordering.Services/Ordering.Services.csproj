@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Validators\" />
-    <Folder Include="Services.Wrappers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Orders\Ordering.Domain.csproj" />
   </ItemGroup>
 
