@@ -9,7 +9,9 @@ namespace Ordering.Services.DTOs
 {
     public class OrderDTO
     {
-        [MinAllowedOrderValueAttribute(ErrorMessage = "Order Value Must be More Than 100 EGP")]
+        [MinAllowedOrderValue]
+        [MaxAllowedOrderVlaue]
+        [ItemsAvailability]
 
         public List<int> ItemsIDs { get; set; }
 
