@@ -1,4 +1,5 @@
-﻿using Ordering.Domain.Repositories.Interface;
+﻿using Ordering.Domain.Order.Aggregate;
+using Ordering.Domain.Repositories.Interface;
 using Ordering.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,18 @@ namespace Ordering.Infrastructure.RepositoryImplementaion
         {
             _context = context;
         }
-        public void SaveChecedkOutOrder()
+        public async Task<int> SaveChecedkOutOrderAsync(Order order)
         {
-            throw new NotImplementedException();
+            _context.Order.Add(new Order()
+            {
+                Address = order.Address,
+                BuyerID = order.BuyerID,
+                DateCreated = DateTime.Now,
+                OrderTotalValue = order.OrderTotalValue,
+                OrderItemToOrders = order.OrderItemToOrders
+            });
+
+          return await _context.SaveChangesAsync();
         }
     }
 }
