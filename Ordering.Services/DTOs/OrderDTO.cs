@@ -12,12 +12,8 @@ namespace Ordering.Services.DTOs
         [MinAllowedOrderValue]
         [MaxAllowedOrderVlaue]
         [ItemsAvailability]
-
         public List<int> ItemsIDs { get; set; }
-
         public string Address { get; set; }
         public int BuyerID { get; set; }
-
-
     }
 }
