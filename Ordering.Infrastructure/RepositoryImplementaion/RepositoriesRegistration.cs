@@ -14,6 +14,7 @@ namespace Ordering.Infrastructure.RepositoryImplementaion
         public static void AddReposServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IOrderingRepository, OrderingReopsitory>();
+            services.AddTransient<Context.EFContext>();
         }
     }
 }
