@@ -11,5 +11,8 @@ namespace Ordering.Domain.Order.Aggregate
         public string Name { get; set; }
         public bool  isValid { get; set; }
         public decimal ItemPrice { get; set; }
+
+        public IList<OrderItemToOrder> OrderItemToOrders { get; set; }
+
     }
 }

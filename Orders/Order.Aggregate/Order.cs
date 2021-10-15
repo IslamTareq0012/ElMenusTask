@@ -15,7 +15,7 @@ namespace Ordering.Domain.Order.Aggregate
         public int BuyerID { get; set; }
 
         public decimal OrderTotalValue { get; set; }
-        public ICollection<OrderItem> OrderItems { get; set; }
+        public IList<OrderItemToOrder> OrderItemToOrders { get; set; }
 
     }
 }
