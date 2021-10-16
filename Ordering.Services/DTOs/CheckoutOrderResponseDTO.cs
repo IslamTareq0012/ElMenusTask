@@ -9,5 +9,7 @@ namespace Ordering.Services.DTOs
     public class CheckoutOrderResponseDTO
     {
         public bool IsSuccessfullyCheckOut { get; set; }
+
+        public string PaymentURLResponse { get; set; }
     }
 }
