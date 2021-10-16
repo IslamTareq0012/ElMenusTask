@@ -4,6 +4,7 @@ ElmenusTask Project
 # Features
 - Validate the basket items availability.
 - Validate with the total basket money value above 100.
+- Check if the user is fraud or not by assuming that the fraud user's order basket has more than 1500 money value.
 - Integrate with a credit card payment tool to deduct the money from the customer credit card (PayMob).
 - Can be scaled Implementing/Inherting abstract classes and interfaces.
 - Unit Testing Using (xUnit Library).
