@@ -20,7 +20,7 @@ namespace Ordering.API
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            ConfigsAccessor._Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -34,8 +34,8 @@ namespace Ordering.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ordering.API", Version = "v1" });
             });
-            services.AddDomainServices(Configuration);
-            services.AddReposServices(Configuration);
+            services.AddDomainServices(ConfigsAccessor._Configuration);
+            services.AddReposServices(ConfigsAccessor._Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

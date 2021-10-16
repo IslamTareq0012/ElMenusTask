@@ -15,5 +15,9 @@ namespace Ordering.Services.DTOs
         public List<int> ItemsIDs { get; set; }
         public string Address { get; set; }
         public int BuyerID { get; set; }
+
+        //1- CARD
+        //2- WALLET
+        public int PaymentTypeID { get; set; }
     }
 }

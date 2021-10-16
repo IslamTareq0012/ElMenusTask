@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ordering.Domain.Repositories.Interface;
+using Ordering.Services.Payment.Services;
 using Ordering.Services.Services.Implementations;
 using Ordering.Services.Services.Interfaces;
 using System;
@@ -16,6 +17,8 @@ namespace Ordering.Services
         public static void AddDomainServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IOrderingService, OrderingService>();
+            services.AddTransient<CardPayment>();
+            services.AddTransient<WalletPayment>();
         }
     }
 }
