@@ -18,15 +18,11 @@ namespace Ordering.Services.Services.Implementations
 
         private readonly IOrderingRepository _repository;
         public readonly IServiceScopeFactory _serviceScopeFactory;
-        private readonly IHttpClientFactory _clientFactory;
 
-        public OrderingService(IOrderingRepository repository,
-            IServiceScopeFactory serviceScopeFactory,
-            IHttpClientFactory clientFactory)
+        public OrderingService(IOrderingRepository repository, IServiceScopeFactory serviceScopeFactory)
         {
             _repository = repository;
             _serviceScopeFactory = serviceScopeFactory;
-            _clientFactory = clientFactory;
 
         }
         public async Task<Response<CheckoutOrderResponseDTO>> CrateOrderAsync(OrderDTO order)
@@ -68,7 +64,7 @@ namespace Ordering.Services.Services.Implementations
                                     quantity = 1,
                                     name = "ORDER ID : " + OrderId.ToString()
                                 } }
-                            }, _clientFactory.CreateClient());
+                            }, new HttpClient());
 
                             return new Response<CheckoutOrderResponseDTO>(new CheckoutOrderResponseDTO()
                             {
@@ -86,7 +82,8 @@ namespace Ordering.Services.Services.Implementations
                                 {
                                     source = new DTOs.PaymentRequestsModel.PaymentRequest.PaymentSource()
                                     {
-                                        subtype = "CARD"
+                                        subtype = "WALLET",
+                                        identifier = "01010101010"
                                     }
                                 },
                                 items = new List<DTOs.PaymentRequestsModel.OrderRegistrationRequest.RequestItems>() { new DTOs.PaymentRequestsModel.OrderRegistrationRequest.RequestItems() {
@@ -94,7 +91,7 @@ namespace Ordering.Services.Services.Implementations
                                     quantity = 1,
                                     name = "ORDER ID : " + OrderId.ToString()
                                 } }
-                            }, _clientFactory.CreateClient());
+                            }, new HttpClient());
 
                             return new Response<CheckoutOrderResponseDTO>(new CheckoutOrderResponseDTO()
                             {

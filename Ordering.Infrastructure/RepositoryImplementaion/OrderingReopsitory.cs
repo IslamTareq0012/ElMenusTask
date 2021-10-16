@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.RepositoryImplementaion
 {
-    class OrderingReopsitory : IOrderingRepository
+    public class OrderingReopsitory : IOrderingRepository
     {
         private readonly EFContext _context;
         public OrderingReopsitory(EFContext context)

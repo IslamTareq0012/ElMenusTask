@@ -14,6 +14,12 @@ namespace Ordering.Infrastructure.Context
         {
 
         }
+
+        public EFContext(DbContextOptions<EFContext> options)
+            : base(options)
+        {
+                
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-RJ8LH3D;Database=Elmenus;Trusted_Connection=True;");
