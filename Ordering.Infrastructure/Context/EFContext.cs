@@ -43,28 +43,6 @@ namespace Ordering.Infrastructure.Context
                 .HasOne<OrderItem>(sc => sc.OrderItem)
                 .WithMany(s => s.OrderItemToOrders)
                 .HasForeignKey(sc => sc.OrderItemID);
-
-            //Seeding data with 3 Items
-
-            modelBuilder.Entity<OrderItem>().HasData(
-                    new OrderItem
-                    {
-                        isValid = true,
-                        ItemPrice = 100,
-                        Name = "Item1",
-                    }, new OrderItem
-                    {
-                        isValid = true,
-                        ItemPrice = 100,
-                        Name = "Item2",
-                    }, new OrderItem
-                    {
-                        isValid = true,
-                        ItemPrice = 100,
-                        Name = "Item3",
-                    }
-                );
-
         }
 
         //Entities

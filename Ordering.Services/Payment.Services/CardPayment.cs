@@ -16,6 +16,8 @@ namespace Ordering.Services.Payment.Services
 
         public override async Task<string> PayAsync(OrderRegistrationRequest order,HttpClient client)
         {
+            var AuthToken = await GetAuthTokenAsync(client);
+            order.auth_token = AuthToken;
             var PlaceOrderRequest = new StringContent(
                     JsonSerializer.Serialize(order),
                     Encoding.UTF8,
@@ -27,7 +29,6 @@ namespace Ordering.Services.Payment.Services
             var PlaceOrderResponseSerialized = await JsonSerializer.DeserializeAsync
                 <OrderRegistrationResponse>(PlaceOrderResponseResponseStream);
 
-            var AuthToken = await GetAuthTokenAsync(client);
             order.paymentRequest.Payempayment_token = await GetPaymentKeyAsync( client, new PaymentKeyRequest()
             {
                 auth_token = AuthToken,

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Services.DTOs;
 using Ordering.Services.Services.Implementations;
+using Ordering.Services.Services.Interfaces;
 using Ordering.Services.Services.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,8 @@ namespace Ordering.API.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly OrderingService _orderingService;
-        public OrdersController(OrderingService orderingService)
+        private readonly IOrderingService _orderingService;
+        public OrdersController(IOrderingService orderingService)
         {
             _orderingService = orderingService;
         }
