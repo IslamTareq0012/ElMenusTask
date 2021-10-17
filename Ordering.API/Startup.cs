@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Ordering.API.Middlewares;
 using Ordering.Infrastructure.RepositoryImplementaion;
 using Ordering.Services;
 using System;
@@ -53,6 +54,7 @@ namespace Ordering.API
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
